@@ -5,6 +5,15 @@ on:
   schedule:
   # UTC 00:00 every 26th of the month(JST 09:00)
     - cron: '0 0 26 * *'
+# Read environment variables
+env:
+  PAID_USER_ID: ${{ secrets.PAID_USER_ID }}
+  OWED_USER_ID: ${{ secrets.OWED_USER_ID }}
+  CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+  CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
+  GROUP_ID: ${{ secrets.GROUP_ID }}
+  HOUSE_RENT_TOTAL: ${{ secrets.HOUSE_RENT_TOTAL }}
+  HOUSE_RENT_OWN: ${{ secrets.HOUSE_RENT_OWN }}
 
 jobs:
   build:
