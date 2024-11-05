@@ -1,0 +1,26 @@
+name: Monthly job
+
+on:
+  workflow_dispatch:
+  schedule:
+  # UTC 00:00 every 26th of the month(JST 09:00)
+    - cron: '0 0 26 * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '21'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run start
+        run: npm run start
