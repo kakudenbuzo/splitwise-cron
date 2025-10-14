@@ -18,10 +18,15 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -33,3 +38,11 @@ jobs:
 
       - name: Run start
         run: npm run start
+
+      - name: Keep workflow active
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          date > .github/.keep-alive
+          git add .github/.keep-alive
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: keep workflow active [skip ci]" && git push)
