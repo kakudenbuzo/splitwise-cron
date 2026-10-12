@@ -2,9 +2,9 @@ name: Monthly job
 
 on:
   workflow_dispatch:
-  schedule:
+  # schedule:
   # UTC 00:00 every 26th of the month(JST 09:00)
-    - cron: '0 0 26 * *'
+  #  - cron: '0 0 26 * *'
 # Read environment variables
 env:
   PAID_USER_ID: ${{ secrets.PAID_USER_ID }}
